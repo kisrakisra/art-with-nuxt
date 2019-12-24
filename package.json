@@ -1,0 +1,61 @@
+{
+  "name": "test-nuxt",
+  "version": "1.0.0",
+  "description": "My prime Nuxt.js project",
+  "author": "Sumeyye",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "coverage": "nyc --reporter=html --reporter=text npm run test:unit",
+    "generate": "nuxt generate",
+    "test": "ava",
+    "test:unit": "cross-env TEST=unit ava --config unit.config.js",
+    "test:e2e": "cross-env TEST=e2e ava --config e2e.config.js"
+  },
+  "dependencies": {
+    "@nuxtjs/bulma": "^1.2.1",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "nuxt": "^2.0.0",
+    "nyc": "^14.1.1",
+    "sinon": "^7.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "ava": "^2.2.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "browser-env": "^3.2.5",
+    "require-extension-hooks": "^0.3.3",
+    "require-extension-hooks-babel": "^1.0.0",
+    "require-extension-hooks-vue": "^2.0.0"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 90,
+    "statements": 90,
+    "functions": 90,
+    "branches": 90,
+    "include": [
+      "components/*.{js,vue}",
+      "pages/*.{js,vue}"
+    ],
+    "exclude": [
+      "node_modules/**"
+    ],
+    "reporter": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "extension": [
+      ".js",
+      ".vue"
+    ],
+    "cache": true,
+    "all": true
+  }
+}
